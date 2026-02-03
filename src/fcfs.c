@@ -1,0 +1,25 @@
+#include <stdio.h>
+#include "scheduler.h"
+
+void fcfs(Process p[], int n, GanttEntry gantt[], int *gantt_len) {
+    int time = 0;
+    *gantt_len = 0;
+
+    for (int i = 0; i < n; i++){
+        if (time < p[i].arrival_time)
+            time = p[i].arrival_time;
+
+        // Execute full Process
+        for (int t = 0; t < p[i].burst_time; t++) {
+            gantt[*gantt_len].time = time;
+            gantt[*gantt_len].pid = p[i].pid;
+            (*gantt_len)++;
+            time++;
+        }
+
+        p[i].completion_time = time;
+        p[i].turnaround_time = time - p[i].arrival_time;
+        p[i].waiting_time =
+            p[i].turnaround_time - p[i].burst_time;
+    }
+}
