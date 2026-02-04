@@ -16,18 +16,8 @@ int main() {
 
     fcfs(p, n, gantt, &gantt_len);
 
-    printf("Gantt Chart:\n");
-    for (int i = 0; i < gantt_len; i++)
-        printf("| P%d ", gantt[i].pid);
-    printf("|\n");
-
-    printf("\nPID\tCT\tTAT\tWT\n");
-    for (int i = 0; i < n; i++)
-        printf("P%d\t%d\t%d\t%d\n",
-               p[i].pid,
-               p[i].completion_time,
-               p[i].turnaround_time,
-               p[i].waiting_time);
+    print_gantt(gantt, gantt_len);
+    print_process_table(p, n);
 
     return 0;
 }

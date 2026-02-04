@@ -19,5 +19,7 @@ typedef struct {
     int time;
     int pid;
 } GanttEntry;
+void print_gantt(GanttEntry[], int);
+void print_process_table(Process[], int);
 
 #endif
