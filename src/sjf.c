@@ -41,5 +41,6 @@ void sjf(Process p[], int n, GanttEntry gantt[], int *gantt_len) {
             p[idx].turnaround_time - p[idx].burst_time;
 
         completed++;
+        printf("/n");
     }
 }
