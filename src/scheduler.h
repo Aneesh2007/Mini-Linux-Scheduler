@@ -22,5 +22,6 @@ typedef struct {
 void print_gantt(GanttEntry[], int);
 void print_process_table(Process[], int);
 void sjf(Process[], int, GanttEntry[], int*);
+void srtf(Process[], int, GanttEntry[], int*);
 
 #endif

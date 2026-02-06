@@ -14,7 +14,7 @@ int main() {
     GanttEntry gantt[MAX_GANTT];
     int gantt_len;
 
-    fcfs(p, n, gantt, &gantt_len);
+    srtf(p, n, gantt, &gantt_len);
 
     print_gantt(gantt, gantt_len);
     print_process_table(p, n);
