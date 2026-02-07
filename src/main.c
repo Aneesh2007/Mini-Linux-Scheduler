@@ -14,10 +14,12 @@ int main() {
     GanttEntry gantt[MAX_GANTT];
     int gantt_len;
 
-    srtf(p, n, gantt, &gantt_len);
+    int quantum = 2;
+    round_robin(p, n, quantum, gantt, &gantt_len);
 
     print_gantt(gantt, gantt_len);
     print_process_table(p, n);
+    
 
     return 0;
 }
