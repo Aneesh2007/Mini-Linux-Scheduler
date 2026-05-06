@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <limits.h>
 #include "scheduler.h"
 
 void sjf(Process p[], int n, GanttEntry gantt[], int *gantt_len) {
@@ -8,9 +9,9 @@ void sjf(Process p[], int n, GanttEntry gantt[], int *gantt_len) {
 
     while (completed < n) {
         int idx = -1;
-        int min_bt = 1e9;
+        int min_bt = INT_MAX;
 
-        
+        /* Pick the arrived process with the shortest burst time */
         for (int i = 0; i < n; i++) {
             if (p[i].arrival_time <= time &&
                 p[i].remaining_time > 0 &&
@@ -21,11 +22,12 @@ void sjf(Process p[], int n, GanttEntry gantt[], int *gantt_len) {
             }
         }
 
-        // If no process is available, CPU is idle
+        /* If no process is available, CPU is idle */
         if (idx == -1) {
             time++;
             continue;
         }
+
         for (int t = 0; t < p[idx].burst_time; t++) {
             gantt[*gantt_len].time = time;
             gantt[*gantt_len].pid = p[idx].pid;
@@ -41,6 +43,5 @@ void sjf(Process p[], int n, GanttEntry gantt[], int *gantt_len) {
             p[idx].turnaround_time - p[idx].burst_time;
 
         completed++;
-        printf("/n");
     }
 }

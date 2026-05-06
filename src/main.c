@@ -49,8 +49,12 @@ int main() {
             break;
 
         case 4:
-            printf("Enter Time Quantum: ");
-            scanf("%d", &quantum);
+            do {
+                printf("Enter Time Quantum (> 0): ");
+                scanf("%d", &quantum);
+                if (quantum <= 0)
+                    printf("Invalid: quantum must be > 0.\n");
+            } while (quantum <= 0);
             round_robin(p, n, quantum, gantt, &gantt_len);
             break;
 
