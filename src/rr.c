@@ -6,9 +6,12 @@ void round_robin(Process p[], int n, int quantum,
 
     int time = 0, completed = 0;
     /*
-     * Use a circular queue large enough for all enqueue operations.
-     * In the worst case every time-unit produces a re-queue, so
-     * MAX_GANTT + MAX_PROCESSES slots are sufficient.
+     * Circular queue sized for all possible enqueue operations.
+     * Each process is initially enqueued once (≤ MAX_PROCESSES) and
+     * re-queued at most once per quantum slice.  The total number of
+     * slices is bounded by the sum of all burst times, which is at
+     * most MAX_GANTT (the Gantt-chart capacity).  Therefore
+     * MAX_GANTT + MAX_PROCESSES slots are always sufficient.
      */
     int queue[MAX_GANTT + MAX_PROCESSES];
     int front = 0, rear = 0;

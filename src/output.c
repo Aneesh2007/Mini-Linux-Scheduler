@@ -7,10 +7,12 @@ void print_gantt(GanttEntry gantt[], int len) {
         return;
     }
 
-    /* Compress consecutive same-PID entries into segments */
-    int seg_pid[MAX_GANTT];
-    int seg_start[MAX_GANTT];
-    int seg_end[MAX_GANTT];
+    /* Compress consecutive same-PID entries into segments.
+     * The number of segments is at most len, so size the arrays
+     * to len to avoid allocating the full MAX_GANTT on the stack. */
+    int seg_pid[len];
+    int seg_start[len];
+    int seg_end[len];
     int nseg = 0;
 
     seg_pid[0]   = gantt[0].pid;
