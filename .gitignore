@@ -1,2 +1,3 @@
-scheduler
-*.o
+# Build artifacts
+/src/scheduler
+/src/*.o
